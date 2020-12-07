@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+      "target": "es6",
+      "module": "commonjs",
+      "baseUrl": ".",
+      "rootDir": ".",
+      "outDir": "./build",
+      "esModuleInterop": true,
+      "strict": true,
+      // "typeRoots": ["api/types/index.d.ts"]
+    }
+  }

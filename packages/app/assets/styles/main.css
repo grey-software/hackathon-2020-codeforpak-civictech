@@ -1,0 +1,16 @@
+:root {
+  --font-heading: "Montserrat", sans-serif;
+  --font-body: 'Open Sans', sans-serif;
+  --color-heading: rgb(165, 190, 210);
+  --color-body: #d1d5db;
+}
+
+.flex {
+  display: flex;
+}
+
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}

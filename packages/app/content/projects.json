@@ -1,0 +1,53 @@
+{
+  "projects": [
+    {
+      "name": "Futurist Network",
+      "desc": "An intranet for futurists to propose, fund and work on the projects of the future!",
+      "logo": "/project-logos/futurist.network.png",
+      "link": "https://futurist.network",
+      "discord": "Thiizic#1778"
+    },
+    {
+      "name": "Skill Sharing",
+      "desc": "A discord server for members to learn together by sharing their skills and expertise!",
+      "logo": "/project-logos/skill-sharing.png",
+      "link": "https://discord.gg/xKEf9az",
+      "discord": "Thiizic#1778"
+    },
+    {
+      "name": "Open Source",
+      "desc": "A discord server for those who believe knowledge should remain free and open for all!",
+      "logo": "/project-logos/open-source.png",
+      "link": "https://chrome.google.com/webstore/detail/linkedin-focus/cmafljjdkloacahjddlpaognhjpacdff?hl=en&authuser=2",
+      "discord": "Eric Lotze#5710"
+    },
+    {
+      "name": "Designers For Good",
+      "desc": "A discord server for designers to discuss good design and how to improve bad design!",
+      "logo": "/project-logos/designers-for-good.png",
+      "link": "https://discord.gg/ynZgjYf",
+      "discord": "Thiizic#1778"
+    },
+    {
+      "name": "Grey Software",
+      "desc": "An open-source organization where software maintainers mentor students and build free software together!",
+      "logo": "/project-logos/grey-software.png",
+      "link": "https://grey.software",
+      "discord": "arsala#6051"
+    },
+    {
+      "name": "Toonin",
+      "desc": "An app that allows you to share or stream audio and video over the web in real time!",
+      "link": "https://toonin.grey.software",
+      "logo": "/project-logos/toonin.svg",
+      "discord": "arsala#6051"
+    },
+    {
+      "name": "Material Math",
+      "desc": "An app that allows you to practice math problems in a fun, beautiful, material experience!",
+      "link": "https://material-math.grey.software",
+      "logo": "/project-logos/material-math.png",
+      "discord": "arsala#6051"
+    }
+  ]
+}
