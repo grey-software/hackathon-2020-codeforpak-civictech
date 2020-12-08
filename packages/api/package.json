@@ -6,10 +6,7 @@
   "author": "Grey Khan",
   "license": "MIT",
   "scripts": {
-    "start": "./node_modules/.bin/pm2 start index.ts",
-    "dev": "./node_modules/.bin/pm2 start ecosystem.config.js --no-daemon",
-    "stop": "./node_modules/.bin/pm2 stop index",
-    "postinstall": "./node_modules/.bin/pm2 install typescript"
+    "start": "ts-node index.ts"
   },
   "dependencies": {
     "body-parser": "^1.19.0",

@@ -29,7 +29,8 @@
     "@nuxtjs/svg": "^0.1.12",
     "@nuxtjs/vuetify": "^1.11.2",
     "core-js": "^3.8.0",
-    "nuxt": "^2.14.9"
+    "nuxt": "^2.14.9",
+    "dotenv": "^8.2.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^5.0.0",

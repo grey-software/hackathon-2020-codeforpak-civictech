@@ -1,1 +1,4 @@
 .DS_Store
+*.env
+packages/app/static/sw.js
+packages/dashboard/static/sw.js

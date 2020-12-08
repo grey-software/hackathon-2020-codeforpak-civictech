@@ -1,0 +1,41 @@
+version: "3.7"
+services:
+  app:
+    image: app
+    build: ./packages/app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - api
+      - mongo
+    environment:
+      HOST: 0.0.0.0
+      PORT: 8080
+  dashboard:
+    image: dashboard
+    build: ./packages/dashboard
+    ports:
+      - "8081:8081"
+    depends_on:
+      - api
+      - mongo
+    environment:
+      HOST: 0.0.0.0
+      PORT: 8081
+  api:
+    image: api
+    build: ./packages/api
+    ports:
+      - "8000:8000"
+    env_file:
+      - prod.env
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo
+    restart: always
+    volumes:
+      - /data/db
+    ports:
+      - "27017:27017"
+    command: mongod --noauth

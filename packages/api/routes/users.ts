@@ -24,6 +24,12 @@ interface UserData {
   cnic: string;
 }
 
+
+interface UserLoginData {
+  phone: string;
+  password: string;
+}
+
 const UsersRouter = express.Router();
 
 UsersRouter.get("/", getUsers);
@@ -33,6 +39,11 @@ UsersRouter.delete("/:uid", deleteUser);
 UsersRouter.post("/:uid", updateUser);
 
 export { UsersRouter };
+
+function login(req: express.Request, res: express.Response) {
+  console.log(req.body);
+  const userData: UserData = req.body.user;
+}
 
 function createUser(req: express.Request, res: express.Response) {
   console.log(req.body);
