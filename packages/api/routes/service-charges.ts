@@ -2,15 +2,28 @@ import { ServiceChargeModel } from "../models/ServiceChargeModel";
 import { ServiceChargePayment } from "../models/ServiceChargePayment";
 import { processPayment } from "../services/PaymentService";
 import express from "express";
-import { ServiceChargeRequest } from "../models/ServiceChargeRequest";
 import { ServiceChargeResponse } from "../models/ServiceChargeResponse";
-import { ResponseCode } from "models/ResponseCode";
 
 const ServiceChargesRouter = express.Router();
 
 ServiceChargesRouter.post("/pay", processServiceChargePayment);
+ServiceChargesRouter.get("/", getServiceCharges);
 
 export { ServiceChargesRouter };
+
+async function getServiceCharges(req: express.Request, res: express.Response) {
+  const query = new Parse.Query("ServiceCharge");
+  query
+    .find()
+    .then(function(results) {
+      console.log(`Fetched service charges from DB: ${results}`);
+      res.send(results);
+    })
+    .catch(function(error) {
+      console.log("Error: " + error.code + " " + error.message);
+      res.send("User Found");
+    });
+}
 
 async function processServiceChargePayment(
   req: express.Request,

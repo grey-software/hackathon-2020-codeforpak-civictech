@@ -1,15 +1,17 @@
-import { UserModel } from './models/UserModel';
-import { testResidents, Resident } from './models/Resident';
+import { UserModel } from "./models/UserModel";
+import { testResidents, Resident } from "./models/Resident";
 import { ServiceChargeModel } from "./models/ServiceChargeModel";
-import { ServiceCharge, testServiceCharges } from "./models/ServiceCharge";
+import {
+  ServiceCharge,
+  generateTestServiceCharges,
+} from "./models/ServiceCharge";
 // Loads required libraries
 require("dotenv").config();
 var ParseDashboard = require("parse-dashboard");
 const ParseServer = require("parse-server").ParseServer;
-import Parse from "parse/node"
+import Parse from "parse/node";
 var path = require("path");
 import express from "express";
-
 
 const PORT = 8000;
 const BASE_URL = process.env.BASE_URL || "localhost";
@@ -19,7 +21,6 @@ if (!databaseUri) {
   console.log("DATABASE_URI not specified, falling back to localhost.");
 }
 
-
 Parse.initialize(
   "template-backend-parse-express-ts",
   process.env.APP_MASTER_KEY
@@ -27,15 +28,12 @@ Parse.initialize(
 Parse.serverURL = `http://${BASE_URL}:${PORT}/api`;
 Parse.Object.registerSubclass("User", UserModel);
 
-
 import { UsersRouter } from "./routes/users";
 import { ServiceChargesRouter } from "./routes/service-charges";
 
 import BodyParser from "body-parser";
 
-
 console.log(`DATABASE_URI: ${databaseUri}`);
-
 
 const parseApi = new ParseServer({
   databaseURI: databaseUri,
@@ -98,6 +96,7 @@ app.get("/", (_, res) =>
 );
 
 const populateDbWithTestData = () => {
+  const testServiceCharges = generateTestServiceCharges(20);
   testServiceCharges.forEach((serviceCharge: ServiceCharge) => {
     const serviceChargeModel = new ServiceChargeModel(serviceCharge);
     serviceChargeModel
