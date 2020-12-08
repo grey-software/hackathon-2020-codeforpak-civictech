@@ -21,9 +21,7 @@ const UsersRouter = express.Router();
 
 UsersRouter.get("/", getUsers);
 UsersRouter.get("/:uid", getUser);
-UsersRouter.post("/create", createUser);
-UsersRouter.delete("/:uid", deleteUser);
-UsersRouter.post("/:uid", updateUser);
+UsersRouter.post("/singup", signup);
 
 export { UsersRouter };
 
@@ -32,7 +30,7 @@ function login(req: express.Request, res: express.Response) {
   const userData: UserData = req.body.user;
 }
 
-function createUser(req: express.Request, res: express.Response) {
+function signup(req: express.Request, res: express.Response) {
   console.log(req.body);
   const userData: Resident = req.body.user;
   if (userData === undefined) {
@@ -52,12 +50,7 @@ function createUser(req: express.Request, res: express.Response) {
       res.send("Error when creating user: " + error);
     });
 }
-function deleteUser(req: express.Request, res: express.Response) {
-  res.send("User Deleted");
-}
-function updateUser(req: express.Request, res: express.Response) {
-  res.send("User Updated");
-}
+
 async function getUser(req: express.Request, res: express.Response) {
   const query = new Parse.Query(User);
   const uid = req.params.uid;

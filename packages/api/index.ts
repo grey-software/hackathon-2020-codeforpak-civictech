@@ -7,16 +7,17 @@ import {
 } from "./models/ServiceCharge";
 // Loads required libraries
 require("dotenv").config();
-var ParseDashboard = require("parse-dashboard");
+const ParseDashboard = require("parse-dashboard");
 const ParseServer = require("parse-server").ParseServer;
 import Parse from "parse/node";
-var path = require("path");
+const path = require("path");
 import express from "express";
+const cors = require('cors')
 
 const PORT = 8000;
 const BASE_URL = process.env.BASE_URL || "localhost";
 
-var databaseUri = process.env.MONGODB_URI || "mongodb://localhost:27017/dev";
+const databaseUri = process.env.MONGODB_URI || "mongodb://localhost:27017/dev";
 if (!databaseUri) {
   console.log("DATABASE_URI not specified, falling back to localhost.");
 }
@@ -30,6 +31,7 @@ Parse.Object.registerSubclass("User", UserModel);
 
 import { UsersRouter } from "./routes/users";
 import { ServiceChargesRouter } from "./routes/service-charges";
+import { AuthRouter } from "./routes/auth";
 
 import BodyParser from "body-parser";
 
@@ -72,7 +74,8 @@ var parseDashboard = new ParseDashboard(
   { allowInsecureHTTP: true }
 );
 
-var app = express();
+const app = express();
+app.use(cors())
 
 // parse application/x-www-form-urlencoded
 app.use(BodyParser.urlencoded({ extended: false }));
@@ -90,6 +93,7 @@ app.use("/api", parseApi);
 app.use("/dashboard", parseDashboard);
 app.use("/users", UsersRouter);
 app.use("/service-charges", ServiceChargesRouter);
+app.use("/auth", AuthRouter);
 
 app.get("/", (_, res) =>
   res.send("Your backend is live! Visit /dashboard for more details!")

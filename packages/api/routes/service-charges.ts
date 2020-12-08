@@ -8,8 +8,12 @@ const ServiceChargesRouter = express.Router();
 
 ServiceChargesRouter.post("/pay", processServiceChargePayment);
 ServiceChargesRouter.get("/", getServiceCharges);
+ServiceChargesRouter.get("/create-request", createServiceChargeRequest);
 
 export { ServiceChargesRouter };
+
+async function createServiceChargeRequest(req: express.Request, res: express.Response) {
+  }
 
 async function getServiceCharges(req: express.Request, res: express.Response) {
   const query = new Parse.Query("ServiceCharge");

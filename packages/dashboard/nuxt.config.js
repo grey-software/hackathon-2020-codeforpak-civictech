@@ -65,7 +65,7 @@ export default {
         treeShake: true,
         theme: {
           themes: {
-            dark: {
+            light: {
               primary: '#10B981',
               secondary: '#3B82F6',              
               accent: '#82B1FF',

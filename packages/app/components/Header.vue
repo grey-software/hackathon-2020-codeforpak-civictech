@@ -9,7 +9,7 @@
             @click.native="checked = false"
           >
             <img class="logo tw-py-2 mr-4" src="/logo.png" />
-            <div class="tw-font-extrabold tw-text-xl">Gov Dashboard</div>
+            <div class="tw-font-extrabold tw-text-xl">Citizen Pay</div>
           </nuxt-link>
           <!-- <nuxt-link
             class="flex align-center tw-mx-4"
