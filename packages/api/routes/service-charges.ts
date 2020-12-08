@@ -1,8 +1,8 @@
 import { ServiceChargeModel } from "../models/ServiceChargeModel";
-import { ServiceChargePayment } from "../models/ServiceChargePayment";
 import { processPayment } from "../services/PaymentService";
 import express from "express";
 import { ServiceChargeResponse } from "../models/ServiceChargeResponse";
+import { ServiceChargeRequest } from "models/ServiceChargeRequest";
 
 const ServiceChargesRouter = express.Router();
 
@@ -13,6 +13,7 @@ ServiceChargesRouter.get("/create-request", createServiceChargeRequest);
 export { ServiceChargesRouter };
 
 async function createServiceChargeRequest(req: express.Request, res: express.Response) {
+
   }
 
 async function getServiceCharges(req: express.Request, res: express.Response) {
@@ -33,15 +34,15 @@ async function processServiceChargePayment(
   req: express.Request,
   res: express.Response
 ) {
-  const payment: ServiceChargePayment = req.body.payment;
-  if (payment === undefined) {
+  const serviceChargeRequest: ServiceChargeRequest = req.body.serviceChargeRequest;
+  if (serviceChargeRequest === undefined) {
     res.send("Service charge payment payload was invalid.");
   }
   const serviceChargeResponse: ServiceChargeResponse = await processPayment(
-    payment.request
+    serviceChargeRequest
   );
   const serviceChargeModel = new ServiceChargeModel({
-    request: payment.request,
+    request: serviceChargeRequest,
     response: serviceChargeResponse,
   });
 
