@@ -1,20 +1,8 @@
+import { Resident } from "./../models/Resident";
 import express from "express";
 import Parse, { User } from "parse/node";
+import { UserModel } from "../models/UserModel";
 
-class UserModel extends User {
-  constructor(userData: UserData) {
-    // Pass the ClassName to the Parse.Object constructor
-    super();
-    this.set("givenNames", userData.givenNames);
-    this.set("lastName", userData.lastName);
-    this.set("username", userData.phone);
-    this.set("password", userData.password);
-    this.set("phone", userData.phone);
-    this.set("cnic", userData.cnic);
-  }
-}
-
-Parse.Object.registerSubclass("User", UserModel);
 
 interface UserData {
   givenNames: string;
@@ -23,7 +11,6 @@ interface UserData {
   phone: string;
   cnic: string;
 }
-
 
 interface UserLoginData {
   phone: string;
@@ -47,7 +34,7 @@ function login(req: express.Request, res: express.Response) {
 
 function createUser(req: express.Request, res: express.Response) {
   console.log(req.body);
-  const userData: UserData = req.body.user;
+  const userData: Resident = req.body.user;
   if (userData === undefined) {
     res.send("Fail ");
   }
@@ -60,7 +47,7 @@ function createUser(req: express.Request, res: express.Response) {
       console.log("User created successful with name: " + user);
       res.send("User Created: " + user.id);
     })
-    .catch((error) => {
+    .catch((error: any) => {
       console.log("Error: " + error.message);
       res.send("Error when creating user: " + error);
     });
@@ -96,13 +83,3 @@ async function getUser(req: express.Request, res: express.Response) {
 function getUsers(req: express.Request, res: express.Response) {
   res.send("Users Found");
 }
-
-const testUsers: Array<UserData> = [
-  {
-    givenNames: "Muhammad Arsala Khan",
-    lastName: "Bangash",
-    password: "1234",
-    phone: "03135020202",
-    cnic: "234-34234-234234",
-  },
-];
