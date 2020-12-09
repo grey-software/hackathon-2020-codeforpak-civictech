@@ -2,7 +2,7 @@ require('dotenv').config()
 
 export default {
   // Target (https://go.nuxtjs.dev/config-target)
-  target: 'server',
+  target: 'static',
   server: {
     port: 8081, // default: 3000
   },
@@ -105,5 +105,14 @@ export default {
 
   axios: {
     baseURL: process.env.API_URL
+  },
+  oneSignal: {
+    init: {
+      appId: process.env.ONE_SIGNAL_APP_ID,
+      allowLocalhostAsSecureOrigin: true,
+      welcomeNotification: {
+          disable: true
+      }
+    }
   }
 }
