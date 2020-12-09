@@ -4,27 +4,28 @@
       <div class="flex-col">
         <h1 class="tw-font-extrabold tw-text-3xl md:tw-text-6xl">Welcome,</h1>
         <h1 class="tw-font-extrabold tw-text-2xl md:tw-text-6xl">
-          Muzaffarabad Resident!
+          {{rtl? "السلام عليكم" : "Muzaffarabad Resident!"}}
         </h1>
       </div>
       <div class="flex-col tw-my-7">
         <h1
           class="tw-font-extrabold tw-text-lg md:tw-text-6xl tw-text-gray-700"
         >
-          Let us set you up with easy government service payments today!
+         {{rtl? "آج ہم آپ کی ادائیگی طے کرتے ہیں" : "Let us set you up with easy government service payments today!"}}
         </h1>
         <h1
           class="tw-font-extrabold tw-text-xl md:tw-text-6xl tw-text-center tw-my-6"
         >
-          Are you a?
+         <!-- {{rtl? "" : ""}} -->
+         {{rtl? "تم کیا ہو" : "Are you a?"}}
         </h1>
       </div>
       <div class="flex tw-mt-6">
         <nuxt-link to="/onboarding/permissions" class="flex-col align-center tw-w-1/2 px-6">
-        <HouseIcon /><v-btn outlined class="my-4" color="primary">Homeowner</v-btn>
+        <HouseIcon /><v-btn outlined class="my-4" color="primary">{{rtl? "گھر کا مالک" : "Homeowner"}}</v-btn>
         </nuxt-link>
         <nuxt-link to="/onboarding/permissions" class="flex-col align-center tw-w-1/2 px-6">
-        <ShopIcon /><v-btn outlined class="my-4" color="accent">Business Owner</v-btn></nuxt-link>
+        <ShopIcon /><v-btn outlined class="my-4" color="accent">{{rtl? "کاروباری مالک" : "Business Owner"}} </v-btn></nuxt-link>
       </div>
     </section>
   </div>

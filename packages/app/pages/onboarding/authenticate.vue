@@ -17,7 +17,8 @@
         ></v-text-field>
         <v-btn @click="requestAuth">Submit</v-btn>
       </div>
-      <div v-show="codeRequestSent" class="flex-col">
+      
+      <div v-if="codeRequestResponded" class="flex-col">
         <v-text-field
           label="Your code"
           prepend-icon="mdi-lock-open"
@@ -25,6 +26,12 @@
         ></v-text-field>
         <v-btn>Submit</v-btn>
       </div>
+      <v-progress-circular
+      :size="50"
+      color="primary"
+      indeterminate
+      v-if="codeRequestSent"
+    ></v-progress-circular>
     </section>
   </div>
 </template>
@@ -33,34 +40,43 @@
 export default {
   data() {
     return {
-      phone: "03139288208",
+      phone: "",
       code: "",
       codeRequestSent: false,
+      codeRequestResponded: false,
     };
   },
   methods: {
-    requestAuth() {
+    async requestAuth() {
       console.log("Requesting auth");
-      this.$axios
-        .post("http://localhost:8000/auth/request", {
-          phone: this.phone,
-        })
-        .then((res) => {
-          console.log(res);
-          this.codeRequestSent = true;
-        })
-        .catch((e) => console.log(e));
+      this.codeRequestSent = true;
+      await setTimeout(() => {}, 2000);
+      this.codeRequestResponded = true;
+          this.codeRequestSent = false;
+      // this.$axios
+      //   .post("http://localhost:8000/auth/request", {
+      //     phone: this.phone,
+      //   })
+      //   .then((res) => {
+      //     console.log(res);
+          
+      //   })
+      //   .catch((e) => console.log(e));
     },
-    validateCode() {
-      this.$axios
-        .post("http://localhost:8000/api/auth/validate", {
-          code: this.code,
-        })
-        .then((res) => {
-          console.log(res);
-          this.$router.push({ path: "/register" });
-        })
-        .catch((e) => console.log(e));
+    async validateCode() {
+      console.log("Validating code");
+      this.codeRequestSent = true;
+      await setTimeout(() => {}, 2000);
+          this.codeRequestSent = false;
+      // this.$axios
+      //   .post("http://localhost:8000/api/auth/validate", {
+      //     code: this.code,
+      //   })
+      //   .then((res) => {
+      //     console.log(res);
+      //     this.$router.push({ path: "/register" });
+      //   })
+      //   .catch((e) => console.log(e));
     },
   },
 };

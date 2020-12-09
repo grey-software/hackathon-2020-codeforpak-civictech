@@ -3,11 +3,11 @@
     <section class="tw-h-screen">
       <div class="flex-col">
         <h1 class="tw-font-extrabold tw-text-3xl md:tw-text-6xl">
-          Before we start,
+          {{rtl? "شروع کرنے سے پہلے" : "Before we start,"}}
         </h1>
         <h1 class="tw-font-extrabold tw-text-xl md:tw-text-6xl tw-my-6">
-          This app requires notification permissions from your phone to run
-          properly.
+          <!-- {{rtl? "" : ""}} -->
+          {{rtl? "اس ایپ کو مناسب طریقے سے چلانے کے لئے فون سے نوٹیفیکیشن اجازتوں کی ضرورت ہے۔" : "This app requires notification permissions from your phone to run properly."}} 
         </h1>
       </div>
       <div class="flex-col tw-my-7 align-center">
@@ -16,12 +16,12 @@
           x-large
           outlined
           class="my-4"
-          color="primary"
-          >Grant</v-btn
-        >
+          color="primary">
+         {{rtl? "قبول کریں" : "Grant"}}
+          </v-btn>
       </div>
       <!-- <h1 class="tw-font-extrabold tw-text-xl md:tw-text-6xl tw-my-6">
-        Thank you!
+       {{rtl? "شکریہ" : "Thank you!"}}
       </h1> -->
     </section>
   </div>
