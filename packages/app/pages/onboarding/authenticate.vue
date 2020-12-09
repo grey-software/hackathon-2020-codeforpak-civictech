@@ -3,10 +3,11 @@
     <section class="tw-h-screen">
       <div class="flex-col">
         <h1 class="tw-font-extrabold tw-text-3xl md:tw-text-6xl">
-          Verify your identity
+         <!-- {{rtl? "" : ""}} -->
+         {{rtl? "اپنی شناخت کرائیں" : "Verify your identity"}}
         </h1>
         <h1 class="tw-font-extrabold tw-text-xl md:tw-text-6xl tw-my-6">
-          Please enter your phone number so we can send you an SMS with a code and verify your identity. 
+          {{rtl? "براہ کرم فون نمبر درج کریں تاکہ ہم آپ کی شناخت کی تصدیق کے لئے کوڈ کے ساتھ ایک ایس ایم ایس بھیج سکیں۔" : "Please enter your phone number so we can send you an SMS with a code and verify your identity."}}
         </h1>
       </div>
       <div class="flex-col">

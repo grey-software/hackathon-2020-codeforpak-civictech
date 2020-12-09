@@ -3,6 +3,9 @@ require('dotenv').config()
 export default {
   // Target (https://go.nuxtjs.dev/config-target)
   target: 'static',
+  env: {
+    apiUrl: process.env.API_URL || 'http://localhost:8000'
+  },
   server: {
     port: 8081, // default: 3000
   },

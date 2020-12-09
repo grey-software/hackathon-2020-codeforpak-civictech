@@ -44,9 +44,9 @@
 <script>
 export default {
   async asyncData({ $axios }) {
-    console.log(`http://localhost:8000/service-charges`);
+    // console.log($nuxt)
     const serviceChargesResult = await $axios.$get(
-      `http://localhost:8000/service-charges`
+      `${process.env.API_URL}/service-charges`
     );
     console.log(serviceChargesResult[0].request);
     const serviceCharges = serviceChargesResult.map((serviceCharge) => {
