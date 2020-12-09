@@ -7,14 +7,14 @@
     "build-app": "yarn --cwd packages/app run generate",
     "build-dash": "yarn --cwd packages/dashboard run generate"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/grey-software/hackathon-2020-codeforpak-civictech.git"
-  },
-  "author": "",
+  "repository": "git+https://github.com/grey-software/hackathon-2020-codeforpak-civictech.git",
+  "author": "ArsalaBangash <arsalabangash@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/grey-software/hackathon-2020-codeforpak-civictech/issues"
   },
-  "homepage": "https://github.com/grey-software/hackathon-2020-codeforpak-civictech#readme"
+  "homepage": "https://github.com/grey-software/hackathon-2020-codeforpak-civictech#readme",
+  "devDependencies": {
+    "pm2": "^4.5.0"
+  }
 }
