@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "build-app": "yarn --cwd packages/app run generate",
-    "build-dash": "yarn --cwd packages/dashboard run generate"
-  },
   "repository": "git+https://github.com/grey-software/hackathon-2020-codeforpak-civictech.git",
   "author": "ArsalaBangash <arsalabangash@gmail.com>",
   "license": "MIT",
