@@ -2,3 +2,4 @@
 *.env
 packages/app/static/sw.js
 packages/dashboard/static/sw.js
+node_modules
