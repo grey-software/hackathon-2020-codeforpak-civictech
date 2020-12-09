@@ -12,7 +12,7 @@ const ParseServer = require("parse-server").ParseServer;
 import Parse from "parse/node";
 const path = require("path");
 import express from "express";
-const cors = require('cors')
+const cors = require("cors");
 
 const PORT = 8000;
 const BASE_URL = process.env.BASE_URL || "localhost";
@@ -21,11 +21,9 @@ const databaseUri = process.env.MONGODB_URI || "mongodb://localhost:27017/dev";
 if (!databaseUri) {
   console.log("DATABASE_URI not specified, falling back to localhost.");
 }
+const appId = process.env.APP_ID || "template-backend-parse-express-ts";
 
-Parse.initialize(
-  "template-backend-parse-express-ts",
-  process.env.APP_MASTER_KEY
-);
+Parse.initialize(appId, process.env.APP_MASTER_KEY);
 Parse.serverURL = `http://${BASE_URL}:${PORT}/api`;
 Parse.Object.registerSubclass("User", UserModel);
 
@@ -39,7 +37,7 @@ console.log(`DATABASE_URI: ${databaseUri}`);
 
 const parseApi = new ParseServer({
   databaseURI: databaseUri,
-  appId: process.env.APP_ID || "template-backend-parse-express-ts",
+  appId: appId,
   masterKey: process.env.APP_MASTER_KEY || "",
   serverURL: process.env.SERVER_URL || `http://${BASE_URL}:${PORT}/api`,
   verbose: true,
@@ -59,7 +57,7 @@ var parseDashboard = new ParseDashboard(
     apps: [
       {
         serverURL: `http://${BASE_URL}:${PORT}/api`,
-        appId: "template-backend-parse-express-ts",
+        appId: process.env.APP_ID,
         masterKey: process.env.APP_MASTER_KEY || "",
         appName: "Grey Software Parse Backend Template",
       },
@@ -75,7 +73,7 @@ var parseDashboard = new ParseDashboard(
 );
 
 const app = express();
-app.use(cors())
+app.use(cors());
 
 // parse application/x-www-form-urlencoded
 app.use(BodyParser.urlencoded({ extended: false }));

@@ -2,7 +2,7 @@ import Parse, { User } from "parse/node";
 import { Resident } from "./Resident";
 
 Parse.initialize(
-  "template-backend-parse-express-ts",
+  process.env.APP_ID || "template-backend-parse-express-ts",
   process.env.APP_MASTER_KEY
 );
 

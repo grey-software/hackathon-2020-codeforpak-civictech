@@ -2,7 +2,7 @@ require('dotenv').config()
 
 export default {
   // Target (https://go.nuxtjs.dev/config-target)
-  target: 'server',
+  target: 'static',
   server: {
     port: 8080, // default: 3000
   },
@@ -46,7 +46,7 @@ export default {
   css: ['@/assets/styles/main.css'],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [],
+  plugins: ['@/plugins/persisted-state.client.js'],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -85,6 +85,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/content
     '@nuxt/content',

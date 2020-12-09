@@ -9,26 +9,15 @@
             @click.native="checked = false"
           >
             <img class="logo tw-py-2 mr-4" src="/logo.png" />
-            <div class="tw-font-extrabold tw-text-xl">Citizen Pay</div>
+            <div class="tw-font-extrabold tw-text-xl">
+              {{ rtl ? "سٹیزن پے " : "Citizen Pay" }}
+            </div>
           </nuxt-link>
-          <!-- <nuxt-link
-            class="flex align-center tw-mx-4"
-            to="/"
-            @click.native="checked = false"
-          >
-            <div class="tw-font-extrabold tw-text-xl"></div>
-          </nuxt-link> -->
-          <!-- <nuxt-link
-            class="flex align-center tw-mx-4"
-            to="/"
-            @click.native="checked = false"
-          >
-            <div class="tw-font-extrabold tw-text-xl"></div>
-          </nuxt-link> -->
         </div>
         <div class="navbar-spacer tw-mx-auto"></div>
 
         <div class="flex align-center">
+          <v-switch dense hide-details v-model="rtlSwitch"> </v-switch>
           <v-app-bar-nav-icon
             class="tw-mx-2"
             x-large
@@ -44,7 +33,8 @@
 </template>
 
 <script>
-import SideDrawer from '@/components/SideDrawer'
+import SideDrawer from "@/components/SideDrawer";
+import { mapMutations, mapState } from "vuex";
 
 export default {
   components: {
@@ -52,10 +42,25 @@ export default {
   },
   data() {
     return {
-      drawerOpen: false
-    }
+      drawerOpen: false,
+      rtlSwitch: false,
+    };
   },
-}
+  mounted() {
+    this.rtlSwitch = this.$store.state.rtl;
+  },
+  computed: {
+    ...mapState(["rtl"]),
+  },
+  methods: {
+    ...mapMutations(["setRtl"]),
+  },
+  watch: {
+    rtlSwitch(value) {
+      this.setRtl({ rtl: value });
+    },
+  },
+};
 </script>
 
 <style scoped>

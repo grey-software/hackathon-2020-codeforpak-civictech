@@ -20,10 +20,10 @@
         </h1>
       </div>
       <div class="flex tw-mt-6">
-        <div class="flex-col align-center tw-w-1/2 px-6">
+        <nuxt-link to="/onboarding/permissions" class="flex-col align-center tw-w-1/2 px-6">
         <HouseIcon /><v-btn outlined class="my-4" color="primary">Homeowner</v-btn>
-        </div>
-        <nuxt-link to="/authenticate" class="flex-col align-center tw-w-1/2 px-6">
+        </nuxt-link>
+        <nuxt-link to="/onboarding/permissions" class="flex-col align-center tw-w-1/2 px-6">
         <ShopIcon /><v-btn outlined class="my-4" color="accent">Business Owner</v-btn></nuxt-link>
       </div>
     </section>
@@ -33,10 +33,16 @@
 <script>
 import HouseIcon from "@/static/icons/house.svg?inline";
 import ShopIcon from "@/static/icons/shop.svg?inline";
+
+import { mapState } from 'vuex';
+
 export default {
   components: {
     HouseIcon,
     ShopIcon,
+  },
+  computed: {
+    ...mapState(["rtl"]),
   },
 };
 </script>

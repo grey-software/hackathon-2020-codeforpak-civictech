@@ -3,7 +3,7 @@ const Parse = require("parse/node");
 
 
 Parse.initialize(
-    "template-backend-parse-express-ts",
+    process.env.APP_ID,
     process.env.APP_MASTER_KEY
   );
 

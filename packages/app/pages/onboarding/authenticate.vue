@@ -2,6 +2,14 @@
   <div class="tw-container tw-p-6 tw-grid tw-place-items-center">
     <section class="tw-h-screen">
       <div class="flex-col">
+        <h1 class="tw-font-extrabold tw-text-3xl md:tw-text-6xl">
+          Verify your identity
+        </h1>
+        <h1 class="tw-font-extrabold tw-text-xl md:tw-text-6xl tw-my-6">
+          Please enter your phone number so we can send you an SMS with a code and verify your identity. 
+        </h1>
+      </div>
+      <div class="flex-col">
         <v-text-field
           label="03xxxxxxxxx"
           prepend-icon="mdi-phone"
