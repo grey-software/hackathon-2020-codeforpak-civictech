@@ -38,13 +38,6 @@ import ShopIcon from "@/static/icons/shop.svg?inline";
 import { mapState } from 'vuex';
 
 export default {
-  created () {
-    let currentUser = this.$parse.User.current();
-    if(!currentUser) {
-      console.log("No current user")
-      this.$router.push("onboarding")
-    }
-  },
   components: {
     HouseIcon,
     ShopIcon,
