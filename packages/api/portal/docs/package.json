@@ -1,0 +1,19 @@
+{
+  "name": "open-gov-portal",
+  "version": "0.0.1",
+  "description": "A web portal for the open gov project that allows you to browse through the open gov ecosystem",
+  "main": "index.js",
+  "authors": {
+    "name": "Arsala Grey",
+    "email": "org@grey.software"
+  },
+  "repository": "/open-gov-portal",
+  "scripts": {
+    "dev": "vuepress dev src",
+    "build": "vuepress build src"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^1.5.3"
+  }
+}
