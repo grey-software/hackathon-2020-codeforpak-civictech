@@ -1,10 +1,10 @@
-import { errorResponse, successResponse } from "./../models/BaseApiResponse";
+import { errorResponse, successResponse } from "../models/BaseApiResponse";
 import { ServiceChargeModel } from "../models/ServiceChargeModel";
 import { processPayment } from "../services/PaymentService";
 import express from "express";
 import { ServiceChargeResponse } from "../models/ServiceChargeResponse";
-import { ServiceChargeRequest } from "models/ServiceChargeRequest";
-import { ServiceChargeRequestModel } from "models/ServiceChargeRequestModel";
+import { ServiceChargeRequest } from "../models/ServiceChargeRequest";
+import { ServiceChargeRequestModel } from "../models/ServiceChargeRequestModel";
 
 const ServiceChargesRouter = express.Router();
 
@@ -27,7 +27,7 @@ async function createServiceChargeRequest(
   serviceChargeRequestModel
     .save()
     .then((serviceChargeRequest: ServiceChargeRequestModel) => {
-      console.log("Service Charge Request created : " + serviceChargeRequest);
+      // console.log("Service Charge Request created : " + serviceChargeRequest);
       res.send(
         successResponse("Service Charge Request created!", {
           service_charge_request: serviceChargeRequest,

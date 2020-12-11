@@ -1,32 +1,32 @@
 version: "3.7"
 services:
-  app:
-    image: app
-    build: ./packages/app
-    ports:
-      - "8080:8080"
-    depends_on:
-      - api
-      - mongo
-    environment:
-      HOST: 0.0.0.0
-      PORT: 8080
-  dashboard:
-    image: dashboard
-    build: ./packages/dashboard
-    ports:
-      - "8081:8081"
-    depends_on:
-      - api
-      - mongo
-    environment:
-      HOST: 0.0.0.0
-      PORT: 8081
+  # app:
+  #   image: app
+  #   build: ./packages/app
+  #   ports:
+  #     - "8080:8080"
+  #   depends_on:
+  #     - api
+  #     - mongo
+  #   environment:
+  #     HOST: 0.0.0.0
+  #     PORT: 8080
+  # dashboard:
+  #   image: dashboard
+  #   build: ./packages/dashboard
+  #   ports:
+  #     - "8081:8081"
+  #   depends_on:
+  #     - api
+  #     - mongo
+  #   environment:
+  #     HOST: 0.0.0.0
+  #     PORT: 8081
   api:
     image: api
     build: ./packages/api
-    ports:
-      - "8000:8000"
+    logging:
+      driver: none
     env_file:
       - prod.env
     depends_on:
@@ -34,8 +34,42 @@ services:
   mongo:
     image: mongo
     restart: always
+    logging:
+      driver: none
     volumes:
-      - /data/db
+      - app-data:/var/lib/postgresql/data
     ports:
       - "27017:27017"
     command: mongod --noauth
+  nginx-proxy:
+    image: jwilder/nginx-proxy:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - app:/api
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - certs:/etc/nginx/certs
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    labels:
+      - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy"
+    depends_on:
+      - api
+  letsencrypt:
+    restart: always
+    container_name: letsencrypt
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    volumes:
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - certs:/etc/nginx/certs
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    depends_on:
+      - nginx-proxy
+volumes:
+  app-data:
+  html:
+  certs:
+  vhost:
+  app:

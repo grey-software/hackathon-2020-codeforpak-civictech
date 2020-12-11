@@ -10,5 +10,5 @@ WORKDIR /
 COPY . /api
 
 WORKDIR /api
-
+EXPOSE 8000
 CMD [ "yarn", "start" ]

@@ -30,6 +30,8 @@ Parse.Object.registerSubclass("User", UserModel);
 import { UsersRouter } from "./routes/users";
 import { ServiceChargesRouter } from "./routes/service-charges";
 import { AuthRouter } from "./routes/auth";
+import { PushRouter } from "./routes/push";
+
 
 import BodyParser from "body-parser";
 
@@ -92,6 +94,7 @@ app.use("/dashboard", parseDashboard);
 app.use("/users", UsersRouter);
 app.use("/service-charges", ServiceChargesRouter);
 app.use("/auth", AuthRouter);
+app.use("/push", PushRouter);
 
 app.get("/", (_, res) =>
   res.send("Your backend is live! Visit /dashboard for more details!")
@@ -104,7 +107,7 @@ const populateDbWithTestData = () => {
     serviceChargeModel
       .save()
       .then((savedModel: any) => {
-        console.log(`Service charge successfully created: ${savedModel.id}`);
+        // console.log(`Service charge successfully created: ${savedModel.id}`);
       })
       .catch((e: any) => console.log(e));
   });
@@ -114,7 +117,7 @@ const populateDbWithTestData = () => {
     userModel
       .save()
       .then((savedModel: any) => {
-        console.log(`User successfully created: ${savedModel.id}`);
+        // console.log(`User successfully created: ${savedModel.id}`);
       })
       .catch((e: any) => console.log(e));
   });
