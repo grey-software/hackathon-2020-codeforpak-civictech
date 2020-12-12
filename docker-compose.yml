@@ -25,8 +25,8 @@ services:
   api:
     image: api
     build: ./packages/api
-    logging:
-      driver: none
+    # logging:
+    #   driver: none
     env_file:
       - prod.env
     depends_on:
@@ -34,8 +34,8 @@ services:
   mongo:
     image: mongo
     restart: always
-    logging:
-      driver: none
+    # logging:
+    #   driver: none
     volumes:
       - app-data:/var/lib/postgresql/data
     ports:

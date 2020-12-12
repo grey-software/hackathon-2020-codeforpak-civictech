@@ -1,5 +1,6 @@
 import Parse, { User } from "parse/node";
 import { Resident } from "./Resident";
+import { UserInitData } from "./UserInitData";
 
 Parse.initialize(
   process.env.APP_ID || "template-backend-parse-express-ts",
@@ -7,8 +8,7 @@ Parse.initialize(
 );
 
 export class UserModel extends User {
-  constructor(resident: Resident) {
-    super();
+  addResidentInfo(resident: Resident) {
     this.set("givenNames", resident.given_names);
     this.set("lastName", resident.last_name);
     this.set("username", resident.phone);
@@ -17,5 +17,13 @@ export class UserModel extends User {
     this.set("cnic", resident.cnic);
     this.set("type", resident.type);
     this.set("address", resident.address);
+  }
+
+  constructor(userData: UserInitData) {
+    super();
+    this.set("username", userData.phone);
+    this.set("phone", userData.phone);
+    this.set("password", userData.phone);
+    this.set("cnic", userData.cnic);
   }
 }

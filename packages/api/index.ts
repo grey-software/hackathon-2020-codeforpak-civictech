@@ -24,7 +24,7 @@ if (!databaseUri) {
 const appId = process.env.APP_ID || "template-backend-parse-express-ts";
 
 Parse.initialize(appId, process.env.APP_MASTER_KEY);
-Parse.serverURL = `http://${BASE_URL}:${PORT}/api`;
+Parse.serverURL = `https://${BASE_URL}/api`;
 Parse.Object.registerSubclass("User", UserModel);
 
 import { UsersRouter } from "./routes/users";
@@ -32,8 +32,8 @@ import { ServiceChargesRouter } from "./routes/service-charges";
 import { AuthRouter } from "./routes/auth";
 import { PushRouter } from "./routes/push";
 
-
 import BodyParser from "body-parser";
+import { testUserInitData, UserInitData } from "models/UserInitData";
 
 console.log(`DATABASE_URI: ${databaseUri}`);
 
@@ -41,7 +41,7 @@ const parseApi = new ParseServer({
   databaseURI: databaseUri,
   appId: appId,
   masterKey: process.env.APP_MASTER_KEY || "",
-  serverURL: process.env.SERVER_URL || `http://${BASE_URL}:${PORT}/api`,
+  serverURL: process.env.SERVER_URL || `https://${BASE_URL}/api`,
   verbose: true,
 });
 
@@ -54,24 +54,23 @@ const userDetails = {
 };
 
 console.log(userDetails);
-var parseDashboard = new ParseDashboard(
-  {
-    apps: [
-      {
-        serverURL: `http://${BASE_URL}:${PORT}/api`,
-        appId: process.env.APP_ID,
-        masterKey: process.env.APP_MASTER_KEY || "",
-        appName: "Grey Software Parse Backend Template",
-      },
-    ],
-    users: [
-      {
-        user: process.env.DASHBOARD_USER,
-        pass: process.env.DASHBOARD_PASS,
-      },
-    ],
-  }
-  );
+var parseDashboard = new ParseDashboard({
+  apps: [
+    {
+      serverURL: `https://${BASE_URL}/api`,
+      appId: process.env.APP_ID,
+      masterKey: process.env.APP_MASTER_KEY || "",
+      appName: "Open Gov Parse Dashboard",
+    },
+  ],
+  users: [
+    {
+      user: process.env.DASHBOARD_USER,
+      pass: process.env.DASHBOARD_PASS,
+    },
+  ],
+  trustProxy: 1
+});
 
 const app = express();
 app.use(cors());
@@ -84,6 +83,7 @@ app.use(BodyParser.json());
 
 // Serve static assets from the /public folder
 app.use("/public", express.static(path.join(__dirname, "/public")));
+app.use("/portal", express.static(path.join(__dirname, "/portal/src/.vuepress/dist")));
 
 // Serve the Parse API at /api
 app.use("/api", parseApi);
@@ -95,34 +95,32 @@ app.use("/service-charges", ServiceChargesRouter);
 app.use("/auth", AuthRouter);
 app.use("/push", PushRouter);
 
-app.get("/", (_, res) =>
-  res.send("Your backend is live! Visit /dashboard for more details!")
-);
+app.get("/", (_, res) => res.redirect("/portal"));
 
-const populateDbWithTestData = () => {
-  const testServiceCharges = generateTestServiceCharges(20);
-  testServiceCharges.forEach((serviceCharge: ServiceCharge) => {
-    const serviceChargeModel = new ServiceChargeModel(serviceCharge);
-    serviceChargeModel
-      .save()
-      .then((savedModel: any) => {
-        // console.log(`Service charge successfully created: ${savedModel.id}`);
-      })
-      .catch((e: any) => console.log(e));
-  });
+// const populateDbWithTestData = () => {
+//   const testServiceCharges = generateTestServiceCharges(20);
+//   testServiceCharges.forEach((serviceCharge: ServiceCharge) => {
+//     const serviceChargeModel = new ServiceChargeModel(serviceCharge);
+//     serviceChargeModel
+//       .save()
+//       .then((savedModel: any) => {
+//         // console.log(`Service charge successfully created: ${savedModel.id}`);
+//       })
+//       .catch((e: any) => console.log(e));
+//   });
 
-  testResidents.forEach((resident: Resident) => {
-    const userModel = new UserModel(resident);
-    userModel
-      .save()
-      .then((savedModel: any) => {
-        // console.log(`User successfully created: ${savedModel.id}`);
-      })
-      .catch((e: any) => console.log(e));
-  });
-};
+//   testUserInitData.forEach((userData: UserInitData) => {
+//     const userModel = new UserModel(userData);
+//     userModel
+//       .save()
+//       .then((savedModel: any) => {
+//         // console.log(`User successfully created: ${savedModel.id}`);
+//       })
+//       .catch((e: any) => console.log(e));
+//   });
+// };
 
 app.listen(PORT, () => {
-  console.log(`⚡️[server]: Server is running at http://${BASE_URL}:${PORT}`);
-  populateDbWithTestData();
+  console.log(`⚡️[server]: Server is running at http://${BASE_URL}`);
+  // populateDsbWithTestData();
 });
