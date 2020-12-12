@@ -6,8 +6,11 @@ WORKDIR /api
 RUN yarn
 
 WORKDIR /
-
 COPY . /api
+
+WORKDIR /api/portal
+RUN yarn
+RUN yarn build
 
 WORKDIR /api
 EXPOSE 8000

@@ -2,7 +2,7 @@ import { Resident } from "./../models/Resident";
 import express from "express";
 import Parse, { User } from "parse/node";
 import { UserModel } from "../models/UserModel";
-
+import { UserInitData } from "../models/UserInitData";
 
 interface UserData {
   givenNames: string;
@@ -21,7 +21,8 @@ const UsersRouter = express.Router();
 
 UsersRouter.get("/", getUsers);
 UsersRouter.get("/:uid", getUser);
-UsersRouter.post("/singup", signup);
+// UsersRouter.post("/singup", signup);
+UsersRouter.post("/initialize", initialize);
 
 export { UsersRouter };
 
@@ -30,19 +31,16 @@ function login(req: express.Request, res: express.Response) {
   const userData: UserData = req.body.user;
 }
 
-function signup(req: express.Request, res: express.Response) {
+function initialize(req: express.Request, res: express.Response) {
   console.log(req.body);
-  const userData: Resident = req.body.user;
-  if (userData === undefined) {
-    res.send("Fail ");
-  }
-
+  const userData: UserInitData = req.body.user;
   const newUserModel = new UserModel(userData);
 
   newUserModel
     .save()
     .then((user: User) => {
       console.log("User created successful with name: " + user);
+      // # TODO Turn this into success response
       res.send("User Created: " + user.id);
     })
     .catch((error: any) => {
@@ -50,6 +48,27 @@ function signup(req: express.Request, res: express.Response) {
       res.send("Error when creating user: " + error);
     });
 }
+
+// function signup(req: express.Request, res: express.Response) {
+//   console.log(req.body);
+//   const userData: Resident = req.body.user;
+//   if (userData === undefined) {
+//     res.send("Fail ");
+//   }
+
+//   const newUserModel = new UserModel(userData);
+
+//   newUserModel
+//     .save()
+//     .then((user: User) => {
+//       console.log("User created successful with name: " + user);
+//       res.send("User Created: " + user.id);
+//     })
+//     .catch((error: any) => {
+//       console.log("Error: " + error.message);
+//       res.send("Error when creating user: " + error);
+//     });
+// }
 
 async function getUser(req: express.Request, res: express.Response) {
   const query = new Parse.Query(User);

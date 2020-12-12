@@ -1,6 +1,7 @@
 const { description } = require("../../package");
 
 module.exports = {
+  base: '/portal/',
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#title
    */
@@ -49,15 +50,6 @@ module.exports = {
         link: "https://v1.vuepress.vuejs.org",
       },
     ],
-    sidebar: {
-      "/guide/": [
-        {
-          title: "Guide",
-          collapsable: false,
-          children: ["", "using-vue"],
-        },
-      ],
-    },
   },
 
   /**
