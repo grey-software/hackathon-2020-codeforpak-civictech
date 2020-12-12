@@ -1,50 +1,62 @@
 <template>
   <div>
+    <v-navigation-drawer
+      disable-resize-watcher
+      v-model="drawerOpen"
+      app
+      left
+      v-if="!rtl"
+    >
+      <SideDrawer />
+    </v-navigation-drawer>
     <v-app-bar app elevate-on-scroll flat>
       <div class="tw-container flex tw-mx-auto align-center">
         <div class="flex tw-align-center tw-mr-auto">
+          <v-app-bar-nav-icon
+            class="tw-mx-2"
+            x-large
+            v-if="!rtl"
+            @click="drawerOpen = !drawerOpen"
+          ></v-app-bar-nav-icon>
           <nuxt-link
             class="flex align-center tw-mr-5"
             to="/"
             @click.native="checked = false"
           >
             <img class="logo tw-py-2 mr-4" src="/logo.png" />
-            <div class="tw-font-extrabold tw-text-xl">Gov Dashboard</div>
+            <div class="tw-font-extrabold tw-text-xl">
+              {{ rtl ? "سٹیزن پے " : "Government Dashboard" }}
+            </div>
           </nuxt-link>
-          <!-- <nuxt-link
-            class="flex align-center tw-mx-4"
-            to="/"
-            @click.native="checked = false"
-          >
-            <div class="tw-font-extrabold tw-text-xl"></div>
-          </nuxt-link> -->
-          <!-- <nuxt-link
-            class="flex align-center tw-mx-4"
-            to="/"
-            @click.native="checked = false"
-          >
-            <div class="tw-font-extrabold tw-text-xl"></div>
-          </nuxt-link> -->
         </div>
         <div class="navbar-spacer tw-mx-auto"></div>
 
         <div class="flex align-center">
+          <v-switch dense hide-details v-model="rtlSwitch"> </v-switch>
           <v-app-bar-nav-icon
             class="tw-mx-2"
             x-large
             @click="drawerOpen = !drawerOpen"
+            v-if="rtl"
           ></v-app-bar-nav-icon>
         </div>
       </div>
     </v-app-bar>
-    <v-navigation-drawer disable-resize-watcher v-model="drawerOpen" app right>
+    <v-navigation-drawer
+      disable-resize-watcher
+      v-model="drawerOpen"
+      app
+      right
+      v-if="rtl"
+    >
       <SideDrawer />
     </v-navigation-drawer>
   </div>
 </template>
 
 <script>
-import SideDrawer from '@/components/SideDrawer'
+import SideDrawer from "@/components/SideDrawer";
+import { mapMutations, mapState } from "vuex";
 
 export default {
   components: {
@@ -52,10 +64,27 @@ export default {
   },
   data() {
     return {
-      drawerOpen: false
-    }
+      drawerOpen: true,
+      rtlSwitch: false,
+    };
   },
-}
+  mounted() {
+    this.rtlSwitch = this.$store.state.rtl;
+    const largeScreen = this.$mq === 'lg' || this.$mq === 'xl'
+    this.drawerOpen = largeScreen
+  },
+  computed: {
+    ...mapState(["rtl"]),
+  },
+  methods: {
+    ...mapMutations(["setRtl"]),
+  },
+  watch: {
+    rtlSwitch(value) {
+      this.setRtl({ rtl: value });
+    },
+  },
+};
 </script>
 
 <style scoped>

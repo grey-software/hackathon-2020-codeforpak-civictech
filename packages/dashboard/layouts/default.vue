@@ -1,10 +1,10 @@
 <template>
-  <v-app dark>
+  <v-app>
     <Header />
     <v-main>
       <nuxt />
     </v-main>
-    <Footer />
+    <!-- <Footer /> -->
   </v-app>
 </template>
 

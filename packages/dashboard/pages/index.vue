@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <section class="tw-h-screen tw-grid tw-place-items-center">
-      <div class="flex-col align-center tw-mb-12">
+      <div class="flex-col tw-mb-12">
         <v-data-table
           :headers="headers"
           :items="serviceCharges"
@@ -42,13 +42,14 @@
 </template>
 
 <script>
+console.log(process.env.API_URL)
 export default {
   async asyncData({ $axios }) {
     // console.log($nuxt)
     const serviceChargesResult = await $axios.$get(
       `${process.env.API_URL}/service-charges`
     );
-    console.log(serviceChargesResult[0].request);
+    // console.log(serviceChargesResult);
     const serviceCharges = serviceChargesResult.map((serviceCharge) => {
       const timestamp = serviceCharge.response.payload.timestamp;
       const tIndex = timestamp.indexOf("T");

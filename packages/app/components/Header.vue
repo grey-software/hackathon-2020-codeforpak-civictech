@@ -1,8 +1,23 @@
 <template>
   <div>
+    <v-navigation-drawer
+      disable-resize-watcher
+      v-model="drawerOpen"
+      app
+      left
+      v-if="!rtl"
+    >
+      <SideDrawer />
+    </v-navigation-drawer>
     <v-app-bar app elevate-on-scroll flat>
       <div class="tw-container flex tw-mx-auto align-center">
         <div class="flex tw-align-center tw-mr-auto">
+          <v-app-bar-nav-icon
+            class="tw-mx-2"
+            x-large
+            v-if="!rtl"
+            @click="drawerOpen = !drawerOpen"
+          ></v-app-bar-nav-icon>
           <nuxt-link
             class="flex align-center tw-mr-5"
             to="/"
@@ -22,11 +37,18 @@
             class="tw-mx-2"
             x-large
             @click="drawerOpen = !drawerOpen"
+            v-if="rtl"
           ></v-app-bar-nav-icon>
         </div>
       </div>
     </v-app-bar>
-    <v-navigation-drawer disable-resize-watcher v-model="drawerOpen" app right>
+    <v-navigation-drawer
+      disable-resize-watcher
+      v-model="drawerOpen"
+      app
+      right
+      v-if="rtl"
+    >
       <SideDrawer />
     </v-navigation-drawer>
   </div>
@@ -42,12 +64,14 @@ export default {
   },
   data() {
     return {
-      drawerOpen: false,
+      drawerOpen: true,
       rtlSwitch: false,
     };
   },
   mounted() {
     this.rtlSwitch = this.$store.state.rtl;
+    const largeScreen = this.$mq === "lg" || this.$mq === "xl";
+    this.drawerOpen = largeScreen;
   },
   computed: {
     ...mapState(["rtl"]),
@@ -78,3 +102,4 @@ export default {
   max-width: 72px;
 }
 </style>
+

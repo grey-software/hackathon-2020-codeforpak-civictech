@@ -99,6 +99,19 @@ export default {
         serverUrl: process.env.PARSE_SERVER_URL,
       },
     ],
+    [
+      "nuxt-mq",
+      {
+        // Default breakpoint for SSR
+        breakpoints: {
+          xs: 480,
+          sm: 900,
+          md: 1200,
+          lg: 1600,
+          xl: 1800,
+        },
+      },
+    ],
   ],
   tailwindcss: {
     cssPath: "@/assets/styles/tailwind.css",

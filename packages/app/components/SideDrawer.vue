@@ -16,9 +16,17 @@ export default {
     return {
       navItems: [
         {
-          title: '',
+          title: 'Home',
           link: '/',
         },
+        {
+          title: 'Notifify Residents',
+          link: '/notify',
+        },
+        {
+          title: 'Residents',
+          link: '/residents',
+        }
       ],
     }
   },

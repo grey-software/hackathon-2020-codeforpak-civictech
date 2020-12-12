@@ -70,9 +70,8 @@ var parseDashboard = new ParseDashboard(
         pass: process.env.DASHBOARD_PASS,
       },
     ],
-  },
-  { allowInsecureHTTP: true }
-);
+  }
+  );
 
 const app = express();
 app.use(cors());

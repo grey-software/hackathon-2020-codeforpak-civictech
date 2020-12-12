@@ -3,11 +3,15 @@
     <section class="tw-h-screen">
       <div class="flex-col">
         <h1 class="tw-font-extrabold tw-text-3xl md:tw-text-6xl">
-          {{rtl? "شروع کرنے سے پہلے" : "Before we start,"}}
+          {{ rtl ? "شروع کرنے سے پہلے" : "Before we start," }}
         </h1>
         <h1 class="tw-font-extrabold tw-text-xl md:tw-text-6xl tw-my-6">
           <!-- {{rtl? "" : ""}} -->
-          {{rtl? "اس ایپ کو مناسب طریقے سے چلانے کے لئے فون سے نوٹیفیکیشن اجازتوں کی ضرورت ہے۔" : "Please enable notification permissions on your phone for the app to run properly."}} 
+          {{
+            rtl
+              ? "اس ایپ کو مناسب طریقے سے چلانے کے لئے فون سے نوٹیفیکیشن اجازتوں کی ضرورت ہے۔"
+              : "Please enable notification permissions on your phone for the app to run properly."
+          }}
         </h1>
       </div>
       <div class="flex-col tw-my-7 align-center">
@@ -16,10 +20,15 @@
           x-large
           outlined
           class="my-4"
-          color="primary">
-         {{rtl? "قبول کریں" : "Grant"}}
-          </v-btn>
+          color="primary"
+        >
+          <v-icon>mdi-key-variant</v-icon>
+          {{ rtl ? "قبول کریں" : "Grant" }}
+        </v-btn>
       </div>
+      <v-snackbar v-model="snackbar" :timeout="timeout">
+        {{ snackbarMessage }}
+      </v-snackbar>
       <!-- <h1 class="tw-font-extrabold tw-text-xl md:tw-text-6xl tw-my-6">
        {{rtl? "شکریہ" : "Thank you!"}}
       </h1> -->
@@ -31,31 +40,48 @@
 import { mapState } from "vuex";
 
 export default {
+  data() {
+    return {
+      snackbar: false,
+      snackbarMessage: "",
+      timeout: 2000
+    };
+  },
   methods: {
     requestPermissions() {
-      const router = this.$router;
-      Notification.requestPermission( (status) => {
+      Notification.requestPermission(async (status) => {
         if (status === "granted") {
           console.log("Permissions granted");
-          router.push({ path: "/onboarding/authenticate" });
-          this.displayNotification()
+          await this.requestPushSubscription()
         } else {
           console.log("Permissions denied");
+          this.snackbar = true;
+          this.snackbarMessage =
+            "Please grant us permissions to send you notifications.";
         }
       });
     },
-    displayNotification() {
-      console.log(navigator.serviceWorker)
-      if (Notification.permission == "granted") {
-        navigator.serviceWorker.getRegistration().then(function (reg) {
-          console.log(reg)
-          reg.showNotification("Hello world!");
-        });
-      }
+    async requestPushSubscription() {
+      const sw = await navigator.serviceWorker.ready;
+      console.log(sw);
+      const subscription = await sw.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: process.env.VAPID_PUB_KEY,
+      });
+      console.log(subscription);
+      console.log(JSON.stringify(subscription));
+      this.$axios
+        .post(`${process.env.API_URL}/push/add-subscription`, {
+          subscription: JSON.stringify(subscription),
+          phone: this.phone,
+          cnic: this.cnic,
+        })
+        .then((res) => console.log(res))
+        .catch((e) => console.log(e));
     },
   },
   computed: {
-    ...mapState(["rtl"]),
+    ...mapState(["rtl", "phone", "cnic"]),
   },
 };
 </script>

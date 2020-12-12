@@ -2,48 +2,67 @@
   <div class="tw-container tw-p-6">
     <section class="tw-h-screen">
       <div class="flex-col">
-        <h1 class="tw-font-extrabold tw-text-3xl md:tw-text-6xl">Welcome,</h1>
-        <h1 class="tw-font-extrabold tw-text-2xl md:tw-text-6xl">
-          {{rtl? "السلام عليكم" : "Muzaffarabad Resident!"}}
-        </h1>
-      </div>
-      <div class="flex-col tw-my-7">
-        <h1
-          class="tw-font-extrabold tw-text-lg md:tw-text-6xl tw-text-gray-700"
-        >
-         {{rtl? "آج ہم آپ کی ادائیگی طے کرتے ہیں" : "Let us set you up with easy government service payments today!"}}
+        <h1 class="tw-font-extrabold tw-text-3xl md:tw-text-6xl">
+          {{ rtl ? "السلام عليكم" : "Welcome" }}
         </h1>
         <h1
-          class="tw-font-extrabold tw-text-xl md:tw-text-6xl tw-text-center tw-my-6"
+          class="tw-font-extrabold tw-text-lg md:tw-text-6xl tw-text-gray-700 tw-my-5"
         >
-         <!-- {{rtl? "" : ""}} -->
-         {{rtl? "تم کیا ہو" : "Are you a?"}}
+          {{ rtl ? "TODO" : "Let's start with your CNIC and phone number!" }}
         </h1>
       </div>
-      <div class="flex tw-mt-6">
-        <nuxt-link to="/onboarding/permissions" class="flex-col align-center tw-w-1/2 px-6">
-        <HouseIcon /><v-btn outlined class="my-4" color="primary">{{rtl? "گھر کا مالک" : "Homeowner"}}</v-btn>
-        </nuxt-link>
-        <nuxt-link to="/onboarding/permissions" class="flex-col align-center tw-w-1/2 px-6">
-        <ShopIcon /><v-btn outlined class="my-4" color="accent">{{rtl? "کاروباری مالک" : "Business Owner"}} </v-btn></nuxt-link>
+      <div class="flex-col">
+        <v-text-field
+          label="03xxxxxxxxx"
+          prepend-icon="mdi-phone"
+          v-model="phone"
+        ></v-text-field>
+        <v-text-field
+          label="CNIC"
+          prepend-icon="mdi-account-key"
+          v-model="cnic"
+        ></v-text-field>
+        <v-btn color="primary" @click="requestAuth">Submit</v-btn>
       </div>
     </section>
   </div>
 </template>
 
 <script>
-import HouseIcon from "@/static/icons/house.svg?inline";
-import ShopIcon from "@/static/icons/shop.svg?inline";
-
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from "vuex";
 
 export default {
-  components: {
-    HouseIcon,
-    ShopIcon,
+  data() {
+    return {
+      phone: "",
+      cnic: "",
+    };
   },
   computed: {
     ...mapState(["rtl"]),
+  },
+
+  methods: {
+    ...mapMutations(["setPhone", "setCnic"]),
+    requestAuth() {
+      this.setPhone({ phone: this.phone });
+      this.setCnic({ cnic: this.cnic });
+      this.$axios
+        .post(`${process.env.API_URL}/users/initialize`, {
+          user: {
+            phone: this.phone,
+            cnic: this.cnic,
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          //   if (res.data.status  === 0 || res.statusText === "OK") {
+          //     this.$router.push("/onboarding/permissions");
+          //   }
+          this.$router.push("/onboarding/permissions");
+        })
+        .catch((e) => console.log(e));
+    },
   },
 };
 </script>
