@@ -7,7 +7,7 @@
         </h1>
         <h1 class="tw-font-extrabold tw-text-xl md:tw-text-6xl tw-my-6">
           <!-- {{rtl? "" : ""}} -->
-          {{rtl? "اس ایپ کو مناسب طریقے سے چلانے کے لئے فون سے نوٹیفیکیشن اجازتوں کی ضرورت ہے۔" : "This app requires notification permissions from your phone to run properly."}} 
+          {{rtl? "اس ایپ کو مناسب طریقے سے چلانے کے لئے فون سے نوٹیفیکیشن اجازتوں کی ضرورت ہے۔" : "Please enable notification permissions on your phone for the app to run properly."}} 
         </h1>
       </div>
       <div class="flex-col tw-my-7 align-center">
