@@ -1,25 +1,34 @@
 <template>
   <div class="container">
-    <section class="tw-h-screen tw-grid tw-place-items-center">
-      <div class="flex-col tw-mb-12">
-        <v-data-table
-          :headers="headers"
-          :items="serviceCharges"
-          :items-per-page="10"
-          class="elevation-1"
-        >
-          <template v-slot:[`item.status`]="{ item }">
-            <v-icon v-if="item.status === 0" color="primary"
-              >mdi-check-circle</v-icon
-            >
-            <v-icon v-else color="error">mdi-error</v-icon>
-          </template>
-          <template v-slot:[`item.service_type`]="{ item }">
-            <div class="tw-capitalize">{{ item.service_type }}</div>
-          </template>
+    <div class="flex-col tw-mb-12 tw-mx-4">
+      <v-text-field
+        v-model="search"
+        append-icon="mdi-magnify"
+        label="Search"
+        single-line
+        hide-details
+        solo 
+        class="tw-my-8"
+      ></v-text-field>
+      <v-data-table
+        :headers="headers"
+        :items="serviceCharges"
+        :items-per-page="10"
+        class="elevation-1"
+        :search="search"
+      >
+        <template v-slot:[`item.status`]="{ item }">
+          <v-icon v-if="item.status === 0" color="primary"
+            >mdi-check-circle</v-icon
+          >
+          <v-icon v-else color="error">mdi-error</v-icon>
+        </template>
+        <template v-slot:[`item.service_type`]="{ item }">
+          <div class="tw-capitalize">{{ item.service_type }}</div>
+        </template>
 
-          <template v-slot:[`item.actions`]="{ item }">
-            <!-- <v-menu offset-y>
+        <template v-slot:[`item.actions`]="{ item }">
+          <!-- <v-menu offset-y>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn @click="console.log(item)" color="primary" icon v-bind="attrs" v-on="on">
                   <v-icon> mdi-dots-vertical </v-icon>
@@ -31,18 +40,17 @@
                 </v-list-item>
               </v-list>
             </v-menu> -->
-            <v-icon small class="mr-2" @click="editItem(item)">
-              mdi-pencil
-            </v-icon>
-          </template>
-        </v-data-table>
-      </div>
-    </section>
+          <v-icon small class="mr-2" @click="editItem(item)">
+            mdi-pencil
+          </v-icon>
+        </template>
+      </v-data-table>
+    </div>
   </div>
 </template>
 
 <script>
-console.log(process.env.API_URL)
+console.log(process.env.API_URL);
 export default {
   async asyncData({ $axios }) {
     // console.log($nuxt)
@@ -82,6 +90,8 @@ export default {
           title: "Info",
         },
       ],
+      search: ""
+
     };
   },
 };
