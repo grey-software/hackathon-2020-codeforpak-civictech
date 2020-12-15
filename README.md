@@ -1,6 +1,23 @@
-# Open Local Governance
 
-Open Local Governance is a suite of modern technologies to reform and digitize local governance. We're starting with revolutionizing how municipalities collect fees from residents for local services.
+
+<div align="center">
+    <img alt="LinkedIn-Focus icon" width="100" src="https://raw.githubusercontent.com/grey-software/open-gov/master/packages/dashboard/static/logo.png">
+    <img alt="LinkedIn-Focus icon" width="100" src="https://raw.githubusercontent.com/grey-software/open-gov/master/packages/app/static/logo.png">
+</div>
+
+# Open Governance
+
+Open Governance is a suite of modern technologies to reform and digitize local governance. We're starting with revolutionizing how municipalities collect fees from residents for local services.
+
+# Important Links
+
+### [Citizen Pay App](https://citizen-pay.grey.software)
+### [Gov Dashboard](https://gov-dashboard.grey.software)
+### [Open Gov Portal](https://open-gov.grey.software)
+### [Backend Dashboard](https://open-gov.grey.software/dashboard)
+### [Personas](https://github.com/grey-software/open-gov/blob/master/personas.md)
+### [Pitch Deck Presentation (Submission to Code For Pakistan Civic Tech Hackathon 2020)](https://drive.google.com/file/d/1gwVy6D91Gy6dzya-zZob5OJ5p8pH_c9y/view?usp=sharing)
+### [OKRs & KPIs](https://github.com/grey-software/open-gov/blob/master/okrs-kpis.md)
 
 ## Problem Statement
 
