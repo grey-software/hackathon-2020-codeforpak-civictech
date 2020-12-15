@@ -1,11 +1,11 @@
 <template>
-  <div class="tw-container tw-p-6">
-    <section class="tw-h-screen">
+  <div class="t-container t-p-6">
+    <section class="t-h-screen">
       <div class="flex-col">
-        <h1 class="tw-font-extrabold tw-text-3xl md:tw-text-6xl">
+        <h1 class="t-font-extrabold t-text-3xl md:t-text-6xl">
           {{ rtl ? "شروع کرنے سے پہلے" : "Before we start," }}
         </h1>
-        <h1 class="tw-font-extrabold tw-text-xl md:tw-text-6xl tw-my-6">
+        <h1 class="t-font-extrabold t-text-xl md:t-text-6xl t-my-6">
           <!-- {{rtl? "" : ""}} -->
           {{
             rtl
@@ -14,7 +14,7 @@
           }}
         </h1>
       </div>
-      <div class="flex-col tw-my-7 align-center">
+      <div class="flex-col t-my-7 align-center">
         <v-btn
           @click="requestPermissions"
           x-large
@@ -29,7 +29,7 @@
       <v-snackbar v-model="snackbar" :timeout="timeout">
         {{ snackbarMessage }}
       </v-snackbar>
-      <!-- <h1 class="tw-font-extrabold tw-text-xl md:tw-text-6xl tw-my-6">
+      <!-- <h1 class="t-font-extrabold t-text-xl md:t-text-6xl t-my-6">
        {{rtl? "شکریہ" : "Thank you!"}}
       </h1> -->
     </section>

@@ -1,12 +1,12 @@
 <template>
-  <div class="tw-container tw-p-6">
-    <section class="tw-h-screen">
+  <div class="t-container t-p-6">
+    <section class="t-h-screen">
       <div class="flex-col">
-        <h1 class="tw-font-extrabold tw-text-3xl md:tw-text-6xl">
+        <h1 class="t-font-extrabold t-text-3xl md:t-text-6xl">
           {{ rtl ? "السلام عليكم" : "Welcome" }}
         </h1>
         <h1
-          class="tw-font-extrabold tw-text-lg md:tw-text-6xl tw-text-gray-700 tw-my-5"
+          class="t-font-extrabold t-text-lg md:t-text-6xl t-text-gray-700 t-my-5"
         >
           {{ rtl ? "TODO" : "Let's start with your CNIC and phone number!" }}
         </h1>

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="flex-col tw-mb-12 tw-mx-4">
+    <div class="flex-col t-mb-12 t-mx-4">
       <v-text-field
         v-model="search"
         append-icon="mdi-magnify"
@@ -8,7 +8,7 @@
         single-line
         hide-details
         solo 
-        class="tw-my-8"
+        class="t-my-8"
       ></v-text-field>
       <v-data-table
         :headers="headers"
@@ -24,7 +24,7 @@
           <v-icon v-else color="error">mdi-error</v-icon>
         </template>
         <template v-slot:[`item.service_type`]="{ item }">
-          <div class="tw-capitalize">{{ item.service_type }}</div>
+          <div class="t-capitalize">{{ item.service_type }}</div>
         </template>
 
         <template v-slot:[`item.actions`]="{ item }">

@@ -1,30 +1,30 @@
 <template>
-  <div class="tw-container tw-p-6">
-    <section class="tw-h-screen">
+  <div class="t-container t-p-6">
+    <section class="t-h-screen">
       <div class="flex-col">
-        <h1 class="tw-font-extrabold tw-text-3xl md:tw-text-6xl">Welcome,</h1>
-        <h1 class="tw-font-extrabold tw-text-2xl md:tw-text-6xl">
+        <h1 class="t-font-extrabold t-text-3xl md:t-text-6xl">Welcome,</h1>
+        <h1 class="t-font-extrabold t-text-2xl md:t-text-6xl">
           {{rtl? "السلام عليكم" : "Muzaffarabad Resident!"}}
         </h1>
       </div>
-      <div class="flex-col tw-my-7">
+      <div class="flex-col t-my-7">
         <h1
-          class="tw-font-extrabold tw-text-lg md:tw-text-6xl tw-text-gray-700"
+          class="t-font-extrabold t-text-lg md:t-text-6xl t-text-gray-700"
         >
          {{rtl? "آج ہم آپ کی ادائیگی طے کرتے ہیں" : "Let us set you up with easy government service payments today!"}}
         </h1>
         <h1
-          class="tw-font-extrabold tw-text-xl md:tw-text-6xl tw-text-center tw-my-6"
+          class="t-font-extrabold t-text-xl md:t-text-6xl t-text-center t-my-6"
         >
          <!-- {{rtl? "" : ""}} -->
          {{rtl? "تم کیا ہو" : "Are you a?"}}
         </h1>
       </div>
-      <div class="flex tw-mt-6">
-        <nuxt-link to="/onboarding/permissions" class="flex-col align-center tw-w-1/2 px-6">
+      <div class="flex t-mt-6">
+        <nuxt-link to="/onboarding/permissions" class="flex-col align-center t-w-1/2 px-6">
         <HouseIcon /><v-btn outlined class="my-4" color="primary">{{rtl? "گھر کا مالک" : "Homeowner"}}</v-btn>
         </nuxt-link>
-        <nuxt-link to="/onboarding/permissions" class="flex-col align-center tw-w-1/2 px-6">
+        <nuxt-link to="/onboarding/permissions" class="flex-col align-center t-w-1/2 px-6">
         <ShopIcon /><v-btn outlined class="my-4" color="accent">{{rtl? "کاروباری مالک" : "Business Owner"}} </v-btn></nuxt-link>
       </div>
     </section>

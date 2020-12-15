@@ -1,12 +1,12 @@
 <template>
-  <div class="tw-container tw-p-6 tw-grid tw-place-items-center">
-    <section class="tw-h-screen">
+  <div class="t-container t-p-6 t-grid t-place-items-center">
+    <section class="t-h-screen">
       <div class="flex-col">
-        <h1 class="tw-font-extrabold tw-text-3xl md:tw-text-6xl">
+        <h1 class="t-font-extrabold t-text-3xl md:t-text-6xl">
           <!-- {{rtl? "" : ""}} -->
           {{ rtl ? "اپنی شناخت کرائیں" : "Verify your identity" }}
         </h1>
-        <h1 class="tw-font-extrabold tw-text-xl md:tw-text-6xl tw-my-6">
+        <h1 class="t-font-extrabold t-text-xl md:t-text-6xl t-my-6">
           {{
             rtl
               ? "براہ کرم فون نمبر درج کریں تاکہ ہم آپ کی شناخت کی تصدیق کے لئے کوڈ کے ساتھ ایک ایس ایم ایس بھیج سکیں۔"

@@ -1,31 +1,31 @@
 <template>
-  <div class="project-card tw-p-4 tw-mb-4">
+  <div class="project-card t-p-4 t-mb-4">
     <div>
       <div class="flex align-center my-4">
         <img class="logo justify-start" :src="project.logo" />
         <div class="ml-3">
-          <h5 class="tw-text-2xl tw-font-bold">{{ project.name }}</h5>
+          <h5 class="t-text-2xl t-font-bold">{{ project.name }}</h5>
         </div>
       </div>
 
       <div class="description">
-        <p class="tw-text-xl">{{ project.desc }}</p>
+        <p class="t-text-xl">{{ project.desc }}</p>
       </div>
     </div>
 
-    <div class="flex tw-mt-4">
+    <div class="flex t-mt-4">
       <v-btn
         color="primary"
         :href="project.repo"
         outlined
         target="_blank"
-        class="tw-mr-4"
+        class="t-mr-4"
         x-large
       >
         <v-icon left large class="mr-3"> mdi-link </v-icon>Link
       </v-btn>
       <!-- <v-btn outlined x-large color="primary" :href="project.link" target="_blank">
-        <v-icon left large class="tw-mr-3"> mdi-discord </v-icon>Discord Lead
+        <v-icon left large class="t-mr-3"> mdi-discord </v-icon>Discord Lead
       </v-btn> -->
     </div>
   </div>

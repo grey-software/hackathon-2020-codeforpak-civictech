@@ -26,9 +26,23 @@ module.exports = {
       17: '640px',
       18: '768px',
       '88vh': '88vh',
+      '24px': '24px',
+      '32px': '32px',
+      '48px': '48px',
+      '64px': '64px',
+      '72px': '72px',
+      '96px': '96px',
+    },
+    screens: {
+      't-screen-phone': {max: '599px'},
+      't-screen-tablet-portrait': {min: '600px'},
+      't-screen-tablet-landscape': {min: '900px'},
+      't-screen-pc': {min: '1200px'},
+      't-screen-pc-wide': {min: '1800px'},
     },
   },
   variants: {},
+  plugins: [require('@tailwindcss/typography')],
   purge: {
     // Learn more on https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css
     enabled: process.env.NODE_ENV === 'production',
@@ -41,5 +55,6 @@ module.exports = {
       'nuxt.config.js',
     ],
   },
-  prefix: 'tw-'
+
+  prefix: 't-',
 }

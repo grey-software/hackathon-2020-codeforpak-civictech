@@ -10,31 +10,31 @@
       <SideDrawer />
     </v-navigation-drawer>
     <v-app-bar app elevate-on-scroll flat>
-      <div class="tw-container flex tw-mx-auto align-center">
-        <div class="flex tw-align-center tw-mr-auto">
+      <div class="t-container flex t-mx-auto align-center">
+        <div class="flex t-align-center t-mr-auto">
           <v-app-bar-nav-icon
-            class="tw-mx-2"
+            class="t-mx-2"
             x-large
             v-if="!rtl"
             @click="drawerOpen = !drawerOpen"
           ></v-app-bar-nav-icon>
           <nuxt-link
-            class="flex align-center tw-mr-5"
+            class="flex align-center t-mr-5"
             to="/"
             @click.native="checked = false"
           >
-            <img class="logo tw-py-2 mr-4" src="/logo.png" />
-            <div class="tw-font-extrabold tw-text-xl">
+            <img class="logo t-py-2 mr-4" src="/logo.png" />
+            <div class="t-font-extrabold t-text-xl">
               {{ rtl ? "سٹیزن پے " : "Citizen Pay" }}
             </div>
           </nuxt-link>
         </div>
-        <div class="navbar-spacer tw-mx-auto"></div>
+        <div class="navbar-spacer t-mx-auto"></div>
 
         <div class="flex align-center">
           <v-switch dense hide-details v-model="rtlSwitch"> </v-switch>
           <v-app-bar-nav-icon
-            class="tw-mx-2"
+            class="t-mx-2"
             x-large
             @click="drawerOpen = !drawerOpen"
             v-if="rtl"
