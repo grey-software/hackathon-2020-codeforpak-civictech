@@ -64,7 +64,7 @@ export default {
   },
   data() {
     return {
-      drawerOpen: true,
+      drawerOpen: false,
       rtlSwitch: false,
     };
   },
