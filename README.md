@@ -1,5 +1,3 @@
-
-
 <div align="center">
     <img alt="LinkedIn-Focus icon" width="100" src="https://raw.githubusercontent.com/grey-software/open-gov/master/packages/dashboard/static/logo.png">
     <img alt="LinkedIn-Focus icon" width="100" src="https://raw.githubusercontent.com/grey-software/open-gov/master/packages/app/static/logo.png">
@@ -9,15 +7,19 @@
 
 Open Governance is a suite of modern technologies to reform and digitize local governance. We're starting with revolutionizing how municipalities collect fees from residents for local services.
 
-# Important Links
+## App Demos
 
-### [Citizen Pay App](https://citizen-pay.grey.software)
-### [Gov Dashboard](https://gov-dashboard.grey.software)
-### [Open Gov Portal](https://open-gov.grey.software)
-### [Backend Dashboard](https://open-gov.grey.software/dashboard)
-### [Personas](https://github.com/grey-software/open-gov/blob/master/personas.md)
-### [Pitch Deck Presentation (Submission to Code For Pakistan Civic Tech Hackathon 2020)](https://drive.google.com/file/d/1gwVy6D91Gy6dzya-zZob5OJ5p8pH_c9y/view?usp=sharing)
-### [OKRs & KPIs](https://github.com/grey-software/open-gov/blob/master/okrs-kpis.md)
+- [Citizen Pay App](https://citizen-pay.grey.software)
+- [Gov Dashboard](https://gov-dashboard.grey.software)
+- [Open Gov Portal](https://open-gov.grey.software)
+- [Backend Dashboard](https://open-gov.grey.software/dashboard)
+
+## Product Documentation
+
+- [Personas](https://github.com/grey-software/open-gov/wiki/OKRs-and-KPI)
+- [Pitch Deck Presentation - Code for Pakistan 2020 Hackathon ](https://drive.google.com/file/d/1gwVy6D91Gy6dzya-zZob5OJ5p8pH_c9y/view?usp=sharing)
+- [OKRs & KPIs](https://github.com/grey-software/open-gov/wiki/OKRs-and-KPI)
+- [2021 Roadmap](https://github.com/grey-software/open-gov/wiki/2021-Roadmap)
 
 ## Problem Statement
 
@@ -33,29 +35,3 @@ Our solution mitigates the requirement for a third-party in the fee collection p
 - App can receive payments from various popular payment processors.
 - App can track citizen via government ID.
 - Alerts for overdue fees can be easily seen and paid by citizens.
-
-## Roadmap
-
-Future goals for the project include leveraging modern technologies to better facilitate the function of the Government. The current feature-set is based on the existing requirements of the municipal government and will require consistent discussion and research to expand onto. Some functionality that we will add in the future is as follows:
-
-### Citizen App
-- Urdu localization support
-- In-app tutorial for first-time users
-- Dark mode for saving battery life
-- 1-click contact for government support
-- View payment history
-- Export all personal data offline
-- Switching between Urdu and English languages
-- Feedback form
-- Deferring payments
-
-### Government Dashboard
-- Download report of all transactions for a citizen
-- Add additional government services to be paid for
-- SQL-like data aggregation and search
-- User-generated reports
-- Detailed audit logging
-- User roles and permissions
-- Search for citizens
-- Interactive jurisdiction browser map
-- Support staging, testing, and production environments for new service rollouts
