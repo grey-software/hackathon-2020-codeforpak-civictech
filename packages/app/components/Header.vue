@@ -40,6 +40,13 @@
             v-if="rtl"
           ></v-app-bar-nav-icon>
         </div>
+
+      
+        <div class="flex align-center">
+          <nuxt-link to="/onboarding" class="flex-col align-center t-w-1/2 px-6"> 
+          <img class="login t-py-2 mr-4" src="/login.png" />
+          </nuxt-link>
+        </div>
       </div>
     </v-app-bar>
     <v-navigation-drawer
@@ -89,6 +96,10 @@ export default {
 
 <style scoped>
 .logo {
+  height: 48px;
+}
+
+.login {
   height: 48px;
 }
 

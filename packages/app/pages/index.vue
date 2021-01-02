@@ -29,11 +29,8 @@
         /><v-btn outlined class="t-my-4" color="primary">{{
           rtl ? "گھر کا مالک" : "Homeowner"
         }}</v-btn>
-      </nuxt-link>
-      <nuxt-link
-        to="/onboarding/permissions"
-        class="flex-col align-center t-w-1/2 px-6"
-      >
+      </nuxt-link> 
+      <nuxt-link to="/onboarding/permissions" class="flex-col align-center t-w-1/2 px-6">
         <ShopIcon
           class="t-screen-phone:t-w-48px t-screen-phone:t-h-48px t-screen-tablet-portrait:t-w-96px t-screen-tablet-portrait:t-h-96px"
         /><v-btn outlined class="my-4" color="accent"
